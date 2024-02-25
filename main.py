@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from shm.v2.shm_example import IPC_CREAT, SharedMemory
+from shm.v2.shm_example import IPC_CREAT, SharedMemory, Test
 
 app = Flask(__name__)
 
@@ -121,4 +121,5 @@ def read(key, shmid):
 
 
 if __name__ == "__main__":
+    #Test()
     app.run(host="0.0.0.0", port=50000)

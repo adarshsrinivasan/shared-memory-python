@@ -169,13 +169,13 @@ class SharedMemory:
         return ""
 
 
-def test():
+def Test():
     data = "testdata1"
     myshm = SharedMemory()
     shm_id = myshm.create(key=SHM_KEY, size=SHM_SIZE, shm_flags=IPC_CREAT | 0o644)
     myshm.attach()
 
-    shmid_ds = myshm.stat()
+    shmid_ds, _  = myshm.stat()
     print("\nshmid_ds Information:")
     print(f"key: {SHM_KEY}")
     print(f"shmid: {shm_id}")
@@ -193,7 +193,7 @@ def test():
 
     myshm.set(0, 0, 0o666)
 
-    shmid_ds_new1 = myshm.stat()
+    shmid_ds_new1, _  = myshm.stat()
     print("\nshmid_ds Information:")
     print(f"key: {SHM_KEY}")
     print(f"shmid: {shm_id}")
@@ -208,7 +208,7 @@ def test():
 
     myshm.set(shmid_ds.contents.shm_perm.uid, shmid_ds.contents.shm_perm.gid, shmid_ds.contents.shm_perm.mode)
 
-    shmid_ds_new2 = myshm.stat()
+    shmid_ds_new2, _  = myshm.stat()
     print("\nshmid_ds Information:")
     print(f"key: {SHM_KEY}")
     print(f"shmid: {shm_id}")
